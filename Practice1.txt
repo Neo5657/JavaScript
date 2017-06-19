@@ -1,0 +1,40 @@
+Q:
+  請完成以下 function a() {} 函式的程式撰寫，讓你的程式可以執行以下程式碼，並且得到預期的結果。
+  ※ 傳入數字的範圍只有 0 ~ 9，且回傳型別必須為 number
+
+  a(2)[0](3).run() === 203
+  a(2)[3](3).run() === 233
+  a(5)[8](2).run() === 582
+  a(9)[9](9).run() === 999
+
+A:
+  var result = '';
+
+  var third = function(n){
+      result += n;
+      return { run: function(){ return result; } };
+  };
+
+  var second = {
+      0:function(n){ result += 10 * 0; return third(n) },
+      1:function(n){ result += 10 * 1; return third(n) },
+      2:function(n){ result += 10 * 2; return third(n) },
+      3:function(n){ result += 10 * 3; return third(n) },
+      4:function(n){ result += 10 * 4; return third(n) },
+      5:function(n){ result += 10 * 5; return third(n) },
+      6:function(n){ result += 10 * 6; return third(n) },
+      7:function(n){ result += 10 * 7; return third(n) },
+      8:function(n){ result += 10 * 8; return third(n) },
+      9:function(n){ result += 10 * 9; return third(n) }
+  };
+
+  var a = function(n){
+      result = 0;
+      result += 100 * n;
+      return second;
+  };
+
+  a(2)[0](3).run() === 203;
+  a(2)[3](3).run() === 233;
+  a(5)[8](2).run() === 582;
+  a(9)[9](9).run() === 999;
